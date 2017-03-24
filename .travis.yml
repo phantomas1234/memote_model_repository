@@ -13,19 +13,16 @@ addons:
 git:
   depth: 2000
 env:
+  matrix:
   - DEPLOY_BRANCH="gh-pages"
-
+  global:
+    secure: clnt8G19fY/+BbKafTNe1G6vXTmbIN2PiODRF3z1oXG21RFR7JO6xrCBQOSq0zInDbNuVbaqVyeC0LAqpDl3uaWHPGnPPWU3CdXnPdqFkMDfml8zC3c4/4BYEKI55Q4NhJvML3rBdYOicpu95XxMbkksUX4J+ZE355YpyYbyWHPnvZYM88AoAcP0QI6lTI6BFhp3Nt1J2o/1vOq58syeQALTylsUE4Fu/HVMBNmOVo0ReySRveCrlhopMhzwOZ8X8nPlV5TO8rbX44ECt/ZhUrWEQszdJzKJ/59c1K2H55kymT8LtupvLDSOctB4upLDviHz5fIIUpoN7GGULggWu70L7piqiix5XzMNtF2xnl2UhxuM9d4i6+HKE5lP6YN8sIXHFmkp4vv9Dk4Xs3E6UJCZiYIj4ztN6S+bRc7r3g0n7AAmqRmDQI+FF/1Wpnhig/mD/xZ8tFVKkHMdaZpcNzNGHYC3aT9Yh7vLbhQcnODSlXhH8g6H82uOWuIKvCmP4Yy4znmrbNHdfRqUk31f27+sed7YcmDwkRQ0S43fsOBlfKEVNBbajmBDXe7NxJEwh1N5mdVxG0DQQuYsOPxdednbZXHTmW+9riH5mk8QfkLFOKT+LwCCHGuQe0Mpg9LL8Vk+KZnZKBB+cTyGf3DaUBdscKdnSIs5OjQfjhisvWQ=
 before_install:
-# travis_retry may overcome some poor network conditions
-  - travis_retry pip install -U pip setuptools wheel
+- travis_retry pip install -U pip setuptools wheel
 install:
-  - travis_retry pip install -U -r requirements.in
-
-# as set up in 'memote.ini' this will create a JSON file in Results
+- travis_retry pip install -U -r requirements.in
 script:
-  - git checkout master
-  - memote
-
-# Changed from 'deploy' to 'after_script' so that we deploy even after failures.
+- git checkout master
+- memote
 after_script:
-  - scripts/deploy.sh
+- scripts/deploy.sh
